@@ -5,9 +5,9 @@ import android.support.v4.app.Fragment;
 /**
  * Created by Alex on 11/25/2015.
  */
-public class SendPictureActivity extends SingleFragmentActivity{
+public class LogInActivity extends SingleFragmentActivity{
     @Override
     protected Fragment createFragment() {
-        return new SendPictureFragment();
+        return new LogInFragment();
     }
 }

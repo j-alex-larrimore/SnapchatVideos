@@ -20,14 +20,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".TakePictureActivity"
-                  android:label="@string/app_name"/>
+        <activity android:name=".LogInActivity"
+                  android:label="SnapChat"/>
 
-        <activity android:name=".InboxActivity"
-                  android:label="@string/app_name"/>
+        <activity android:name=".LogOutActivity"
+                  android:label="SnapChat"/>
 
-        <activity android:name=".SendPictureActivity"
-                  android:label="@string/app_name"/>
+        <activity android:name=".RegisterActivity"
+                  android:label="SnapChat"/>
+
 
     </application>
 
