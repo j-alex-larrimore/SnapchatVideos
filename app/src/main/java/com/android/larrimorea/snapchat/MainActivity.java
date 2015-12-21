@@ -1,17 +1,17 @@
 package com.android.larrimorea.snapchat;
 
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 
 import com.parse.Parse;
+import com.parse.ParseUser;
 
 
 public class MainActivity extends SingleFragmentActivity {
 
     @Override
     protected Fragment createFragment() {
-        return new MainMenuFragment();
+        return new TakePictureFragment();
     }
 
     @Override
@@ -21,5 +21,7 @@ public class MainActivity extends SingleFragmentActivity {
         Parse.enableLocalDatastore(this);
 
         Parse.initialize(this, "nGQQIIDSHEW6TlIAeIny8pdAE5jGmR4rIqQzUX4G", "szIqo1mJYGtsnNvdZr1kVO6kzLIReRSas1NdcJ3Z");
+        ParseUser.logInInBackground("alex", "alex");
+
     }
 }
