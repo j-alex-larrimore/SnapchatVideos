@@ -2,6 +2,8 @@ package com.android.larrimorea.snapchat;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import com.parse.Parse;
 import com.parse.ParseUser;
@@ -11,7 +13,7 @@ public class MainActivity extends SingleFragmentActivity {
 
     @Override
     protected Fragment createFragment() {
-        return new TakePictureFragment();
+        return new MainFragment();
     }
 
     @Override
@@ -24,4 +26,5 @@ public class MainActivity extends SingleFragmentActivity {
         ParseUser.logInInBackground("alex", "alex");
 
     }
+
 }
