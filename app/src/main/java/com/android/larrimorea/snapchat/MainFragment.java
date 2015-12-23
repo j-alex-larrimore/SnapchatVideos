@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -50,12 +51,64 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.main_fragment, container, false);
 
+        updateFriends();
         displayFriendRequests();
 
         getFriendRequests();
 
         return mView;
     }
+
+    private void updateFriends(){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("FriendRequests");
+        query.whereEqualTo("From", ParseUser.getCurrentUser().getUsername());
+        query.whereEqualTo("Accepted", true);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+                    for (ParseObject ob : objects) {
+                        updateFriendList(ob);
+                        deleteRequest(ob);
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "No Friend Requests Accepted", Toast.LENGTH_SHORT).show();
+                    Log.e("MainFragment", "updateFriends" + e.getMessage());
+                }
+            }
+        });
+    }
+
+    private void updateFriendList(ParseObject request){
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo("usernmae", request.getString("To"));
+        query.getFirstInBackground(new GetCallback<ParseUser>() {
+            @Override
+            public void done(ParseUser object, ParseException e) {
+                if(e == null){
+                    ParseRelation<ParseUser> relation = ParseUser.getCurrentUser()
+                            .getRelation("Friends");
+                    relation.add(object);
+                    ParseUser.getCurrentUser().saveInBackground();
+                }else{
+                    Log.e("MainFragment", "updateFriendList" + e.getMessage());
+                }
+            }
+        });
+    }
+
+    private void deleteRequest(ParseObject request){
+        try {
+            request.delete();
+        }catch(ParseException e){
+            Log.e("MainFragment", "deleteRequest" + e);
+        }
+    }
+
+
+
+
+
 
     private void displayFriendRequests(){
         friendRequestsView = (ListView)mView.findViewById(R.id.listViewFriendReqs);
