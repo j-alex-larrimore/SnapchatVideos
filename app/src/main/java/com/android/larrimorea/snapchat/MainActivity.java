@@ -24,7 +24,6 @@ public class MainActivity extends SingleFragmentActivity {
 
         Parse.initialize(this, "nGQQIIDSHEW6TlIAeIny8pdAE5jGmR4rIqQzUX4G", "szIqo1mJYGtsnNvdZr1kVO6kzLIReRSas1NdcJ3Z");
         ParseUser.logInInBackground("bob", "bob");
-
     }
 
 }

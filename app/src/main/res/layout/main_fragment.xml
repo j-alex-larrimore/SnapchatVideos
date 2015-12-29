@@ -7,13 +7,23 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Friend Requests:"
         android:textSize="32dp"
-    />
+        android:text="Send your picture to:"/>
 
     <ListView
-        android:id="@+id/listViewFriendReqs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/listViewSend"></ListView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Inbox"
+        android:textSize="32dp"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listViewInbox"></ListView>
 
 </LinearLayout>
